@@ -31,7 +31,7 @@
     "@types/node": "^18.11.0",
     "@types/prompt-sync": "^4.2.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
-    "@typescript-eslint/parser": "^4.33.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "@vercel/ncc": "^0.31.1",
     "eslint": "^7.32.0",
     "eslint-plugin-jest": "^25.3.2",
