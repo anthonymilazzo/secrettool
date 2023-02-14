@@ -1,0 +1,23 @@
+{
+  "name": "secrettool",
+  "version": "1.0.0",
+  "description": "Shh",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonymilazzo/secrettool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthonymilazzo/secrettool/issues"
+  },
+  "homepage": "https://github.com/anthonymilazzo/secrettool#readme",
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "prompt-sync": "^4.2.0"
+  }
+}
