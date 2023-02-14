@@ -7,43 +7,43 @@ const filename = 'secrets.yaml'
 
 const prompt = promptSync({sigint: true});
 
-function renderSecretPath(secretsConfig, secretName) {
+function renderSecretPath(secretsConfig: { env: string; project: string; secrets: [string] }, secretName: string) {
   return `/${secretsConfig.env}/${secretsConfig.project}/${secretName}`
 }
 
-function loadSecretsConfig(filename) {
+function loadSecretsConfig(filename: string): any {
   const secretsConfig = yaml.load(fs.readFileSync(filename, 'utf8'));
   return secretsConfig
 }
 
-function displayMeta(secretsConfig) {
+function displayMeta(secretsConfig: { env: string; project: string; secrets: [string] }) {
   console.log(`Project: ${secretsConfig.project}`)
   console.log(`Env: ${secretsConfig.env}`)
   console.log('')
 }
 
-function displaySecrets(secretsConfig) {
+function displaySecrets(secretsConfig: { env: string; project: string; secrets: [string] }) {
   console.log("Your configured 🤫 secrets:");
-  secretsConfig.secrets.forEach(secret => {
+  secretsConfig.secrets.forEach((secret: string) => {
     const secretPath = renderSecretPath(secretsConfig, secret);
     console.log(` - ${secret} (${secretPath})`)
   });
   console.log('')
 }
 
-function secretExists(secretsConfig, secret) {
+function secretExists(secretsConfig: { env: string; project: string; secrets: [string] }, secret: string) {
   const secretPath = renderSecretPath(secretsConfig, secret);
   const exists = secretsManager.getSecret(secretPath)
   console.log(` >>> Checking if \"${secretPath}\" exists... ✅`);
 }
 
-function hasAccess(secretsConfig, secret) {
+function hasAccess(secretsConfig: { env: string; project: string; secrets: [string] }, secret: string) {
   const secretPath = renderSecretPath(secretsConfig, secret);
   console.log(` >>> Checking if you have access to \"${secretPath}\"... ✅`);
 }
 
-function checkAllSecrets(secretsConfig) {
-  secretsConfig.secrets.forEach(secret => {
+function checkAllSecrets(secretsConfig: { env: string; project: string; secrets: [string] }) {
+  secretsConfig.secrets.forEach((secret: any) => {
     console.log(` > Checking secret \"${secret}\"...`);
     secretExists(secretsConfig, secret);
     hasAccess(secretsConfig, secret);
@@ -52,33 +52,33 @@ function checkAllSecrets(secretsConfig) {
   });
 }
 
-function chooseSecret(secretsConfig) {
+function chooseSecret(secretsConfig: { env: string; project: string; secrets: [string] }) {
   console.log(`Which one would you like to change?`)
-  secretsConfig.secrets.forEach(secret => console.log(` > ${secret}`));
+  secretsConfig.secrets.forEach((secret: any) => console.log(` > ${secret}`));
   let secret = prompt('?> ')
   return secret
 }
 
-function changeSecret(secretsConfig, secret) {
+function changeSecret(secretsConfig: { env: string; project: string; secrets: [string] }, secret: string) {
   const secretPath = renderSecretPath(secretsConfig, secret);
   let value = prompt('New value > ');
   secretsManager.updateSecret(secretPath, value)
   console.log(`Setting secret \"${secretPath}\"... ✅`);
 }
 
-function changeSecretLoop(secretsConfig) {
-  changingSecrets = true;
+function changeSecretLoop(secretsConfig: { env: string; project: string; secrets: [string] }) {
+  let changingSecrets = true;
   while (changingSecrets) {
     changingSecrets = setAnyValues(secretsConfig);
     console.log('');
   }
 }
 
-function setAnyValues(secretsConfig) {
+function setAnyValues(secretsConfig: { env: string; project: string; secrets: [string] }) {
   let guess = prompt("Would you like to change any secret values? (y/N): ");
   console.log("");
   if (guess == 'y') {
-    secret = chooseSecret(secretsConfig);
+    const secret = chooseSecret(secretsConfig);
     changeSecret(secretsConfig, secret);
     return true
   } else {
@@ -91,27 +91,27 @@ function chooseSecretPath() {
   return secret
 }
 
-function createSecret(secretsConfig, secret) {
+function createSecret(secretsConfig: any, secret: string) {
   let value = prompt('Value > ');
   const secretPath = renderSecretPath(secretsConfig, secret);
   secretsManager.createSecret(secretPath, value)
   console.log(`Creating secret \"${secret}\"... ✅`);
 }
 
-function createSecretLoop(secretsConfig) {
-  creatingSecrets = true;
+function createSecretLoop(secretsConfig: { env: string; project: string; secrets: [string] }) {
+  let creatingSecrets = true;
   while (creatingSecrets) {
     creatingSecrets = createAnySecrets(secretsConfig);
     console.log('');
   }
 }
 
-function createAnySecrets(secretsConfig) {
+function createAnySecrets(secretsConfig: { env: string; project: string; secrets: [string] }) {
   let guess = prompt("Would you like to create any new secrets? (y/N): ");
   console.log("");
   if (guess == 'y') {
-    secret = chooseSecretPath(secretsConfig);
-    createSecret(secret);
+    let secret = chooseSecretPath();
+    createSecret(secretsConfig, secret);
     return true
   } else {
     return false
@@ -122,7 +122,7 @@ function main() {
   try {
     console.log("== secrettool.io v1.0.0 [secrets.yaml] ==\n")
 
-    const secretsConfig = loadSecretsConfig(filename)
+    const secretsConfig: { env: string; project: string; secrets: [string] }  = loadSecretsConfig(filename)
 
     displayMeta(secretsConfig);
 
