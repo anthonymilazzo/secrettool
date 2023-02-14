@@ -1,18 +1,12 @@
-function createSecret(secretName: string, value: string) {
-  console.log(`*** [fake] secret create ${secretName}`)
+export function createSecret(secretName: string, value: string): void {
+  console.log(`*** [fake] secret create ${secretName} ${value}`);
 }
 
-function updateSecret(secretName: string, value: string) {
-  console.log(`*** [fake] secret update ${secretName}`)
+export function updateSecret(secretName: string, value: string): void {
+  console.log(`*** [fake] secret update ${secretName} ${value}`);
 }
 
-function getSecret(secretName: string) {
-  console.log(`*** [fake] secret get ${secretName}`)
-  return true
-}
-
-module.exports = {
-  createSecret,
-  updateSecret,
-  getSecret,
+export function getSecret(secretName: string): boolean {
+  console.log(`*** [fake] secret get ${secretName}`);
+  return true;
 }
