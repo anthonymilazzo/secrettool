@@ -9,3 +9,15 @@ repos:
     hooks:
     -   id: eslint
         types_or: [javascript, jsx, ts, tsx]
+-   repo: local
+    hooks:
+    - id: secrettool
+      name: secrettool
+      language: node
+      entry: node 
+      pass_filenames: false
+      args:
+      - -r
+      - ts-node/register
+      - src/main.ts
+      - lint
