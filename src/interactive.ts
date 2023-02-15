@@ -1,19 +1,19 @@
-import secretTool from "./secretTool";
+import secretTool from './secretTool'
 
 function interactive(filename: string): void {
-  const secretsConfig = secretTool.loadSecretsConfig(filename);
+  const secretsConfig = secretTool.loadSecretsConfig(filename)
 
-  secretTool.displayMeta(secretsConfig);
+  secretTool.displayMeta(secretsConfig)
 
-  secretTool.displayEnvs(secretsConfig);
+  secretTool.displayEnvs(secretsConfig)
 
-  secretTool.checkAllEnvs(secretsConfig);
+  secretTool.checkAllEnvs(secretsConfig)
 
-  secretTool.changeSecretLoop(secretsConfig);
+  secretTool.changeSecretLoop(secretsConfig)
 
-  secretTool.createSecretLoop(secretsConfig);
+  secretTool.createSecretLoop(secretsConfig)
 }
 
 export = {
-  interactive,
-};
+  interactive
+}
