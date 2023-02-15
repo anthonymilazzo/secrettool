@@ -7,11 +7,14 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
-      "skipFiles": [
-        "<node_internals>/**"
+      "name": "Launch Interactive",
+      "runtimeArgs": [
+          "-r",
+          "ts-node/register"
       ],
-      "program": "${workspaceFolder}/index.js"
+      "args": [
+          "${workspaceFolder}/src/main.ts"
+      ]
     }
   ]
 }
