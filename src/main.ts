@@ -4,7 +4,7 @@ import cli from "./cli";
 
 function main(): void {
   try {
-    console.log(`== secrettool.io v1.0.0 [${config.filename}] ==\n`);
+    console.log(`== secrettool.io ${config.version} [${config.filename}] ==\n`);
 
     if (config.mode == "interactive") {
       interactive.interactive(config.filename);

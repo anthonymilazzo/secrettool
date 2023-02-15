@@ -129,8 +129,17 @@ function changeSecret(
   secret: string,
   env: string
 ): void {
-  const secretPath = renderSecretPath(secretsConfig, secret, env);
   let value = prompt("New value > ");
+  changeSecretValue(secretsConfig, secret, env, value);
+}
+
+function changeSecretValue(
+  secretsConfig: { envs: [string]; project: string; secrets: [string] },
+  secret: string,
+  env: string,
+  value: string
+): void {
+  const secretPath = renderSecretPath(secretsConfig, secret, env);
   secretsManager.updateSecret(secretPath, value);
   console.log(`Setting secret \"${secretPath}\"... ✅`);
 }
@@ -232,6 +241,7 @@ export = {
   checkAllSecrets,
   chooseSecret,
   changeSecret,
+  changeSecretValue,
   changeSecretLoop,
   setAnyValues,
   chooseSecretPath,
