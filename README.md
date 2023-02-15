@@ -14,6 +14,8 @@ GitOps workflows for managing secrets can be hard:
 * You have to open up a separate CLI or console and leave your code to setup/change secret values
 * You are not sure how the secrets were organized for this project or where to find them
 
+Not to mention, this problem becomes exponentially more difficult when managing deployments that span multiple environments.
+
 ## A Declarative Solution
 secrettool aims to solve these challenges differently - using a declarative manifest containing the names (but not the values) of your secrets. secrettool then uses this manifest as a "source of truth" inventory that it can then use to check if the secrets in that manifest exist, change the values, and create new secrets.
 
@@ -28,10 +30,15 @@ project: noodles
 secrets:
  - foo
  - bar
+ 
+envs:
+ - dev
+ - prod
 ```
 
 * project: the name of your project
 * secrets: the list of all secrets that the project needs
+* envs: list of all environments where secrets will be replicated
 
 ## Secrets Linting
 secrettool includes a secrets "linter" to ensure:
@@ -39,6 +46,7 @@ secrettool includes a secrets "linter" to ensure:
 * Secret names in your manifest are spelled correctly
 * All secrets in your manifest exist and have been created in the secrets management platform
 * Values have been set for each secret
+* Ensure secrets are created for every environment
 
 ## Interactive & Consistent
 Why not use the native CLI to manage secrets? secrettool offers an interactive, simplified means to manage secrets with helpful interactive prompts. It also enforces consistency to ensure that all secrets created with the utility follow the same naming convention & access controls making for a clean, organized secrets management experience for everyone!
