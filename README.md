@@ -3,7 +3,7 @@
 ## Non-operational/Work in Progress
 This project is not yet operational, and not all features listed below have been implemented. The only backend currently supported is a mock "fakeSecretsManager".
 
-## An open source, secret helper utility
+## An open source secret helper utility
 secrettool is an open source secrets management helper CLI to help developers manage secrets. It provides a few mechanisms to help ease common pain points for secrets management such as creating secrets, setting/changing the value, and ensuring that the correct permissions are assigned. 
 
 ## GitOps & Secrets
