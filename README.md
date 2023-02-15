@@ -32,5 +32,8 @@ secrettool includes a secrets "linter" to ensure:
 ## Interactive & Consistent
 Why not use the native CLI to manage secrets? secrettool offers an interactive, simplified means to manage secrets with helpful interactive prompts. It also enforces consistency to ensure that all secrets created with the utility follow the same naming convention & access controls making for a clean, organized secrets management experience for everyone!
 
+## Runs anywhere
+secrettool is not only interactive CLI - it can also be placed in Github Actions or a pre-commit hook to ensure secret linting and other helpful utilities are applied at every stage of the SDLC process.
+
 ## Demo
 ![Screenshot](https://user-images.githubusercontent.com/18070948/218890548-050ea743-e080-454a-a646-337b27b10133.png)
