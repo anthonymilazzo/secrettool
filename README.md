@@ -6,11 +6,22 @@ This project is not yet operational, and not all features listed below have been
 ## An open source, secret helper utility
 secrettool is an open source secrets management helper CLI to help developers manage secrets. It provides a few mechanisms to help ease common pain points for secrets management such as creating secrets, setting/changing the value, and ensuring that the correct permissions are assigned. 
 
+## GitOps & Secrets
+GitOps workflows for managing secrets can be hard:
+* You can use SOPS, but then you have ciphertext blobs floating around git
+* You can terraform to manage secrets, but then you have secret values floating around in terraform statefile
+* You can create secrets with a secrets manager CLI or console, but then your secrets are sitting outside the GitOps workflow
+* You have to open up a separate CLI or console and leave your code to setup/change secret values
+* You are not sure how the secrets were organized for this project or where to find them
+
+## A Declarative Solution
+secrettool aims to solve these challenges differently - using a declarative manifest containing the names (but not the values) of your secrets. secrettool then uses this manifest as a "source of truth" inventory that it can then use to check if the secrets in that manifest exist, change the values, and create new secrets.
+
 ## Platform Independent
 secrettool is not a replacement for secrets management tools/platforms - instead, it augments these platforms with a standard set of utilities for managing secrets. It supports custom, pluggable backends and can be tailored to fit any secrets management platform.
 
 ## Secrets Manifest
-secrettool creates a new convention for secrets management in the form of a manifest file called `secrets.yaml` placed in the root of your repo:
+secrettool creates a new convention for secrets management in the form of a declarative manifest file called `secrets.yaml` placed in the root of your repo:
 ```
 project: noodles
 
