@@ -1,13 +1,5 @@
 {
   "extends": [
-    "config:recommended"
-  ],
-  "platformAutomerge": true,
-  "packageRules": [
-    {
-      "description": "Automerge non-major updates",
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true
-    }
+    "config:best-practices", ":automergeAll"
   ]
 }
