@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/js-yaml": "4.0.9",
-    "@types/node": "22.9.4",
+    "@types/node": "22.10.0",
     "@types/prompt-sync": "4.2.3",
     "@typescript-eslint/eslint-plugin": "8.0.0",
     "@typescript-eslint/parser": "8.0.0",
